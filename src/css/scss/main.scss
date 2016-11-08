@@ -1,13 +1,13 @@
 //Import global
-
 @import '_variables';
 @import '_mixins';
 
 * {
   box-sizing: border-box;
+  font-family: 'classic-comic'
 }
 
-body, html{
+body, html {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -29,7 +29,7 @@ nav {
       margin: 10px 0px;
 
       color: yellow;
-      font-family: knewave;
+      ;
       text-align: center;
       &.logout {
         width: 100%;
@@ -66,14 +66,15 @@ main.container {
 
 
   header {
-    background-color: rgba(220,30,30,1);
+    background-color: rgba(224,0,0,1);
+    border-bottom:3px solid white;
     img {
-    max-height: 200px;
-    width: 100%;
-    max-width:600px;
-    margin:auto;
-    display: block;
-    overflow: hidden;
+      max-height: 200px;
+      width: 100%;
+      max-width:600px;
+      margin:auto;
+      display: block;
+      overflow: hidden;
     }
   }
 }
@@ -97,7 +98,7 @@ main.container {
 
 a {
   color: yellow;
-  font-family: knewave;
+  ;
   font-size: 22px;
   margin: 15px;
   list-style: none;
@@ -180,7 +181,7 @@ text-align: center;
 
 #content{
 
-  font-family: knewave;
+  ;
   font-size: 18px;
   color: gray;
 
