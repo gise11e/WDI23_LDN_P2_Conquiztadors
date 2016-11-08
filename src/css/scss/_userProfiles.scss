@@ -1,0 +1,93 @@
+
+// Profiles
+
+.profileHolder {
+  * {
+    color: #fff;
+    text-align: center;
+    margin: 5px;
+  }
+  .profileImage {
+    height: 140px;
+    width: 140px;
+    margin: 20px auto;
+    border: 0px;
+    border-radius: 140px;
+    overflow: hidden;
+    img {
+      width: 110%;
+      margin: -5%;
+    }
+  }
+  h3 {
+    font-size:18px;
+    text-align: center;
+  }
+  p {
+    font-family: 'Helvetica';
+    font-size: 12px;
+    font-weight: normal;
+  }
+}
+
+.scores {
+  margin:10px;
+}
+
+// Form selection
+.avatarSelection {
+  width:100%;
+  color:yellow;
+  font-size: 12px;
+  text-align: center;
+  margin: 25px 0 0 0 ;
+
+  img {
+    width: 100%;
+  }
+  h4 {
+    margin-bottom: 20px;
+  }
+  .avatar {
+    box-sizing: border-box;
+    width:calc(33.333% - 20px);
+    margin: 0 20px 20px 0px;
+    padding-bottom: calc(33.33% - 20px);
+    float:left;
+
+    overflow: hidden;
+    position: relative;
+
+    img {position:absolute; left:0;}
+
+    .overlay {
+      height: 100%;
+      width: 100%;
+
+      background: lime;
+      background: -webkit-radial-gradient(circle, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0) 100%);
+
+      opacity: 1;
+      position: absolute;
+      top: 0px;
+
+      transition: all .7s;
+
+      h4 {
+        display: block;
+        vertical-align: middle;
+        color: white;
+        font-size: 15px;
+        text-align: center;
+        padding-top: calc(50% - 5px);
+      }
+    }
+
+    &:hover, &.selected {
+      .overlay {
+        opacity: 0;
+        transition: all .7s;
+      }
+    }
+  }
+}
