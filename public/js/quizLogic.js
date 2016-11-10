@@ -38,7 +38,6 @@ $(function () {
 
   function conquerCountry(marker) {
     google.maps.event.clearListeners(gv.turnInfo.currentIcon);
-    console.log('NO CLECK NO CRY');
   }
 
   function makeResetWork() {
@@ -69,7 +68,6 @@ $(function () {
 
   function gameOverChecker() {
     if (gv.players.player2.turnCounter <= 0) {
-      console.log("GAME OVER MAN");
       endGame();
     }
   }
@@ -116,7 +114,6 @@ $(function () {
     gv.players.player2.powerDiv.html("Power: " + gv.players.player2.power);
     $turnIndicator.show().html(aiCountry[1] + (" has fallen to " + gv.players.player2.handle + "! <br> Fight back hero!"));
     google.maps.event.clearListeners(aiCountry[0]);
-    console.log(aiCountry, aiScore);
     changeIcon(aiCountry[0]);
     markersAlt.splice(rndNum, 1);
     processTurn();
@@ -125,11 +122,8 @@ $(function () {
   getArray(function () {
     $('#map').on('click', '.conquer', function () {
       var countryCode = $(this).data('country');
-      console.log('--on map conquer click:');
-      console.log('  countryCode:', countryCode);
-      console.log('  selectedCountries:', selectedCountries);
       $('#quizPopup').show();
-      infoWindow.close();
+      gv.main.infoWindow.close();
       quizQuestion(countryCode);
     });
   });
@@ -142,7 +136,6 @@ $(function () {
   }
 
   function getArray(callback) {
-    console.log("getArray started");
     // create array of objects of all countries with properties name, capital, alpha2Code and latLng.
     $.get("https://restcountries.eu/rest/v1/all").done(function (data) {
 
@@ -184,8 +177,6 @@ $(function () {
     currentBorder = countryData[index].borders;
     currentBorderCount = countryData[index].borders.length;
 
-    console.log('current capital is ' + currentCapital);
-
     currentCountryPower = $('html').find('.cPower').html();
     // console.log('find: ' + currentCountryPower[0], currentCountryPower);
     currentCountryPower = parseFloat(currentCountryPower);
@@ -206,7 +197,7 @@ $(function () {
     selectedCountries.push(findCountryByAlpha2Code(alpha2Code));
     for (var i = 0; i < 3; i++) {
       var country = findRandomCountry();
-      console.log(country);
+
       while (selectedCountries.indexOf(country) !== -1 || currentArea === null) {
         country = findRandomCountry();
       }
@@ -312,9 +303,6 @@ $(function () {
 
     var questionDefHead = questionDefs.splice(0, 1);
     var questionDef = questionDefHead[0];
-
-    console.log('What is in questionDef ' + questionDef);
-    console.log('What is in theQuestion ' + theQuestion);
 
     $("#quizPopup").html("\n      <p>" + questionDef.theQuestion + " " + countries[questionDef.countryCode].name + "? </p>\n      <div class=\"qHolder\">\n        <label>" + questionDef.option1 + questionDef.units + "</label>\n        <input type=\"radio\" name=\"answer\" value=\"" + questionDef.option1 + "\">\n      </div>\n      <div class=\"qHolder\">\n        <label>" + questionDef.option2 + questionDef.units + "</label>\n        <input type=\"radio\" name=\"answer\" value=\"" + questionDef.option2 + "\">\n      </div>\n      <div class=\"qHolder\">\n        <label>" + questionDef.option3 + questionDef.units + "</label>\n        <input type=\"radio\" name=\"answer\" value=\"" + questionDef.option3 + "\">\n      </div>\n      <div class=\"qHolder\">\n        <label>" + questionDef.option4 + questionDef.units + "</label>\n        <input type=\"radio\" name=\"answer\" value=\"" + questionDef.option4 + "\">\n      </div>\n      <button class=\"stopBtn\">Retreat</button>\n      ");
 

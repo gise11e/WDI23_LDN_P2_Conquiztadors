@@ -11,8 +11,8 @@
     height: 140px;
     width: 140px;
     margin: 20px auto;
-    border: 0px;
     border-radius: 140px;
+	  border: 5px solid $tertiaryColor;
     overflow: hidden;
     img {
       width: 110%;
@@ -75,7 +75,7 @@
       h4 {
         display: block;
         vertical-align: middle;
-        color: white;
+        color: $tertiaryColor;
         font-size: 15px;
         text-align: center;
         padding-top: calc(50% - 5px);

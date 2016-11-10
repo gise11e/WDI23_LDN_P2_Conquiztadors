@@ -61,8 +61,7 @@ const gv = {
 }
 */
 
-let gv.main.currentCountryListener;
-let infoWindow = null;
+gv.main.infoWindow = null;
 
 let markers = [];
 let markersAlt = [];
@@ -97,14 +96,12 @@ function startGame() {
   $('.delete').hide();
 
   $(this).parent().remove();
-  // $('#showPlayerTurn').show();
 
   let currentWindow = null;
   $('#gameLogo').hide();
   clearMarkers();
   gv.main.mainP2.parent().css('opacity', '0.8');
   for (let countryCode in countries){
-
     const country = countries[countryCode];
     const latLng = { lat: country.latlng[0], lng: country.latlng[1] };
     const marker = new google.maps.Marker({
@@ -136,7 +133,7 @@ function startGame() {
 
     let eventlistener = marker.addListener('click', function() {
 
-      infoWindow = new google.maps.InfoWindow({
+      gv.main.infoWindow = new google.maps.InfoWindow({
         content: countryDetails,
         position: new google.maps.LatLng(latLng.lat, latLng.lng)
       });
@@ -148,8 +145,8 @@ function startGame() {
       if (currentWindow !== null) {
         currentWindow.close();
       }
-      infoWindow.open(gv.main.map, marker);
-      currentWindow = infoWindow;
+      gv.main.infoWindow.open(gv.main.map, marker);
+      currentWindow = gv.main.infoWindow;
 
     });
 
@@ -241,7 +238,6 @@ $(() => {
         `);
       })
       .fail(function(jqXHR){
-        console.log(jqXHR.status);
         gv.main.mainP1.html('You are a failure.');
       });
     }
@@ -342,13 +338,10 @@ $(() => {
       }).fail(showLoginForm);
     })
     .fail(showLoginForm);
-    console.log(gv.players.player2.handle);
   }
 
   function showLoginForm(data) {
     if(event) event.preventDefault();
-    console.log(data.responseText);
-    // console.log(JSON.parse(data.responseText));
     const retMsg = data.responseText ? 'Invalid credentials' : '';
     gv.main.mainP1.html(`
       <form method="post" action="/api/user/login">
@@ -394,9 +387,7 @@ $(() => {
   function getUser() {
     const id = $(this).data('id');
     const token = localStorage.getItem('token');
-
     $('html').find('.startGameHolder').remove();
-
     $.ajax({
       url: `/api/user/${id}`,
       method: 'GET',
@@ -448,7 +439,6 @@ $(() => {
     .fail(showLoginForm);
   }
 
-
 // LOGOUT
   function logout() {
     if(event) event.preventDefault();
@@ -491,7 +481,6 @@ $(() => {
   });
 
   function showRules () {
-
     gv.main.mainP1.append(`
       <div class="rulesContent">
       <button class="exitRules" >x</button>
@@ -508,5 +497,4 @@ $(() => {
     `);
     $('.rules').hide();
   }
-
 });

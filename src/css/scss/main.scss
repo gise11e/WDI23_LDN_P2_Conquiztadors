@@ -4,7 +4,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'classic-comic'
+  font-family: $primary-font;
 }
 
 body, html {
@@ -29,7 +29,6 @@ nav {
       margin: 10px 0px;
 
       color: yellow;
-      ;
       text-align: center;
       &.logout {
         width: 100%;
@@ -55,19 +54,19 @@ main.container {
   position: relative;
   z-index: 2;
 
-  background-color: #0d0c47;
+  background-color: $secondaryColor;
   background-image: url('/images/speck.png');
   background-repeat: repeat;
 
-  color: white;
+  color: $tertiaryColor;
   overflow: auto;
   transition: all 0.5s;
 
 
 
   header {
-    background-color: rgba(224,0,0,1);
-    border-bottom:3px solid white;
+    background-color: $primaryColor;
+    border-bottom:3px solid $tertiaryColor;
     img {
       max-height: 200px;
       width: 100%;
@@ -86,10 +85,10 @@ main.container {
   top: 0;
   right: 0;
   z-index: 2;
-  background-color: #0d0c47;
+  background-color: $secondaryColor;
   background-image: url('/images/speck.png');
   background-repeat: repeat;
-  color: white;
+  color: $tertiaryColor;
   opacity: 0;
 
   overflow: auto;
@@ -97,29 +96,30 @@ main.container {
 }
 
 a {
-  color: yellow;
-  ;
-  font-size: 22px;
   margin: 15px;
+
   list-style: none;
-}
 
-a:hover {
-  color:white;
-}
+  color: yellow;
+  font-size: 22px;
 
-a:active {
-  color:white;
+  &:hover {
+    color: $tertiaryColor;
+  }
+
+  &:active {
+    color: $tertiaryColor;
+  }
 }
 
 
 .btn {
-  background-color: #0d0c47;
+  background-color: $secondaryColor;
   color:yellow;
 }
 
 .btn:hover{
-  background-color: #0d0c47;
+  background-color: $secondaryColor;
 }
 
 img {
@@ -139,12 +139,12 @@ img {
   border-radius: 30px;
   margin:15px;
   padding:20px;
-  color: white;
+  color: $tertiaryColor;
   text-align: center;
 
   .exitRules{
 
-    background-color: white;
+    background-color: $tertiaryColor;
   }
 
 }
@@ -167,13 +167,13 @@ text-align: center;
   padding:10px;
   width: 100%;
   color: red;
-  background-color: white;
+  background-color: $tertiaryColor;
   font-family: 'classic-comic';
   font-size: 16px;
 }
 
 .handle {
-  color:#0d0c47;
+  color:$secondaryColor;
   font-family: "classic-comic";
   font-size: 18px;
 
@@ -197,8 +197,8 @@ text-align: center;
 }
 
 .conquer {
-  color: #0d0c47;
-  background-color: white;
+  color: $secondaryColor;
+  background-color: $tertiaryColor;
   margin-top: 20px;
   margin-left: 40px;
   color:red;

@@ -62,8 +62,7 @@ var gv = {
 }
 */
 
-var gv.main.currentCountryListener = void 0;
-var infoWindow = null;
+gv.main.infoWindow = null;
 
 var markers = [];
 var markersAlt = [];
@@ -98,7 +97,6 @@ function startGame() {
   $('.delete').hide();
 
   $(this).parent().remove();
-  // $('#showPlayerTurn').show();
 
   var currentWindow = null;
   $('#gameLogo').hide();
@@ -106,7 +104,6 @@ function startGame() {
   gv.main.mainP2.parent().css('opacity', '0.8');
 
   var _loop = function _loop(countryCode) {
-
     var country = countries[countryCode];
     var latLng = { lat: country.latlng[0], lng: country.latlng[1] };
     var marker = new google.maps.Marker({
@@ -123,7 +120,7 @@ function startGame() {
 
     var eventlistener = marker.addListener('click', function () {
 
-      infoWindow = new google.maps.InfoWindow({
+      gv.main.infoWindow = new google.maps.InfoWindow({
         content: countryDetails,
         position: new google.maps.LatLng(latLng.lat, latLng.lng)
       });
@@ -135,8 +132,8 @@ function startGame() {
       if (currentWindow !== null) {
         currentWindow.close();
       }
-      infoWindow.open(gv.main.map, marker);
-      currentWindow = infoWindow;
+      gv.main.infoWindow.open(gv.main.map, marker);
+      currentWindow = gv.main.infoWindow;
     });
   };
 
@@ -219,7 +216,6 @@ $(function () {
         }
         $avatars.append('\n          <div class="avatar ' + selected + '" data-id="' + obj.id + '">\n            <img src="' + (obj.thumbnail.path + '.' + obj.thumbnail.extension) + '" alt="profile image">\n              <div class="overlay">\n                <h4>' + obj.name + '</h4>\n              </div>\n          </div>\n        ');
       }).fail(function (jqXHR) {
-        console.log(jqXHR.status);
         gv.main.mainP1.html('You are a failure.');
       });
     }
@@ -294,13 +290,10 @@ $(function () {
         $('html').append('\n            <div class="startGameHolder"><p><span>' + gv.players.player2.handle + '</span> has found a way out from <em>"eternal"</em> banishment in the prisons of Asgard, intent on destroying earth and enslaving all it\'s people! Our future now rests on our last hope.. You... <span>' + gv.players.player1.handle + '</span>. Will you stand up and fight against the forces of evil?</p>\n            <p>What is your response, hero?</p> <a href="#" class="startGame">I WANT WAR</a> <a href="#" class="logout"> I\'m washing my hair</a> </div>\n        ');
       }).fail(showLoginForm);
     }).fail(showLoginForm);
-    console.log(gv.players.player2.handle);
   }
 
   function showLoginForm(data) {
     if (event) event.preventDefault();
-    console.log(data.responseText);
-    // console.log(JSON.parse(data.responseText));
     var retMsg = data.responseText ? 'Invalid credentials' : '';
     gv.main.mainP1.html('\n      <form method="post" action="/api/user/login">\n        <div class="form-group">\n          <input class="form-control" name="email" placeholder="Email">\n        </div>\n        <div class="form-group">\n          <input class="form-control" type="password" name="password" placeholder="Password">\n        </div>\n        <span class="error">' + retMsg + '</span>\n        <button class="btn btn-primary">Login</button>\n      </form>\n    ');
   }
@@ -317,9 +310,7 @@ $(function () {
   function getUser() {
     var id = $(this).data('id');
     var token = localStorage.getItem('token');
-
     $('html').find('.startGameHolder').remove();
-
     $.ajax({
       url: '/api/user/' + id,
       method: 'GET',
@@ -395,7 +386,6 @@ $(function () {
   });
 
   function showRules() {
-
     gv.main.mainP1.append('\n      <div class="rulesContent">\n      <button class="exitRules" >x</button>\n      <p>\n      <strong class="rulesT">Object:</strong>\n      <br>Score the most points to win the game. <br>\n      <strong class="rulesT">Setup:</strong>\n      <br>Choose a player from the list. You have 20 turns. Countries have different values based on power structures.\n      <br>\n      <strong class="rulesT">Playing the game:</strong>\n      <br>\n      Click on the marker to choose the next country you want to conquer and complete the multiple choice quiz.\n      Players take turns and accumulate points throughout the game based on answering the quiz correctly.</p></div>\n    ');
     $('.rules').hide();
   }
