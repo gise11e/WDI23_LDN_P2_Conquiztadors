@@ -1,0 +1,7 @@
+
+@mixin comic-background($bgColor, $borderColor, $borderSize){
+  background-color: $bgColor;
+  background-image: url('/images/speck.png');
+  background-repeat: repeat;
+  border: $borderSize solid $borderColor;
+}

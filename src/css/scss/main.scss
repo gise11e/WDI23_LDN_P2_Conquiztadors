@@ -22,20 +22,18 @@ nav {
 
   display:block;
 
-  // background-color: rgba(250,0,6,1);
-
     a {
       width:48%;
       margin: 10px 0px;
 
-      color: yellow;
+      color: $primaryLinkColor;
       text-align: center;
       &.logout {
         width: 100%;
       }
 
       a:hover{
-        color:yellow;
+        color:$primaryLinkColor;
       }
     }
 }
@@ -45,7 +43,6 @@ main.container {
   max-width: 600px;
 
   margin:0px auto 10px auto;
-
 }
 
 #hud {
@@ -54,15 +51,11 @@ main.container {
   position: relative;
   z-index: 2;
 
-  background-color: $secondaryColor;
-  background-image: url('/images/speck.png');
-  background-repeat: repeat;
+  @include comic-background($secondaryColor, $tertiaryColor, 0px);
 
   color: $tertiaryColor;
   overflow: auto;
   transition: all 0.5s;
-
-
 
   header {
     background-color: $primaryColor;
@@ -85,9 +78,9 @@ main.container {
   top: 0;
   right: 0;
   z-index: 2;
-  background-color: $secondaryColor;
-  background-image: url('/images/speck.png');
-  background-repeat: repeat;
+
+  @include comic-background($secondaryColor, $tertiaryColor, 0px);
+
   color: $tertiaryColor;
   opacity: 0;
 
@@ -100,7 +93,7 @@ a {
 
   list-style: none;
 
-  color: yellow;
+  color: $primaryLinkColor;
   font-size: 22px;
 
   &:hover {
@@ -112,10 +105,9 @@ a {
   }
 }
 
-
 .btn {
   background-color: $secondaryColor;
-  color:yellow;
+  color:$primaryLinkColor;
 }
 
 .btn:hover{
@@ -130,6 +122,7 @@ img {
   display: block;
   text-align: center;
 }
+
 .rulesContent {
   font-size: 12px;
   font-family: helvetica;
@@ -143,7 +136,6 @@ img {
   text-align: center;
 
   .exitRules{
-
     background-color: $tertiaryColor;
   }
 
@@ -153,37 +145,30 @@ img {
 }
 
 .rulesT {
-
-padding: 2px;
-font-size: 14px;
-margin: 5px;
-text-align: center;
-
+  padding: 2px;
+  font-size: 14px;
+  margin: 5px;
+  text-align: center;
 }
 
 #restart {
-
   border-radius: 15px;
   padding:10px;
   width: 100%;
-  color: red;
+  color: $darkRed;
   background-color: $tertiaryColor;
-  font-family: 'classic-comic';
   font-size: 16px;
 }
 
 .handle {
   color:$secondaryColor;
-  font-family: "classic-comic";
   font-size: 18px;
 
 }
 
 #content{
-
-  ;
   font-size: 18px;
-  color: gray;
+  color: $grey;
 
   ul {
     font-size: 18px;
@@ -192,7 +177,7 @@ text-align: center;
 
   h1{
     font-size: 28px;
-    color: red;
+    color: $darkRed;
   }
 }
 
@@ -201,7 +186,7 @@ text-align: center;
   background-color: $tertiaryColor;
   margin-top: 20px;
   margin-left: 40px;
-  color:red;
+  color:$darkRed;
   border-radius: 5px;
 }
 
@@ -216,15 +201,13 @@ text-align: center;
   top: calc(50% - 200px);
   z-index: 11;
 
-  background-color: rgba(180,30,30,1);
-  background-image: url('/images/speck.png');
-  background-repeat: repeat;
-  border: 5px solid rgba(50,50,50,1);
+  @include comic-background($darkRed, $tertiaryColor, 5px);
 
-  color: rgba(255,255,255,1);
+  color: $tertiaryColor;
   font-family: 'classic-comic';
   font-size: 20px;
   text-align: center;
+
   p:nth-of-type(2){
     font-size: 24px;
   }
@@ -234,7 +217,7 @@ text-align: center;
 
     font-size: 30px;
 
-    color: yellow;
+    color: $primaryLinkColor;
     font-weight: bold;
   }
 
@@ -245,12 +228,12 @@ text-align: center;
     float: left;
 
     background-color: #2c2c2c;
-    border: 2px solid yellow;
+    border: 2px solid $primaryLinkColor;
 
     font-family: 'classic-comic';
     font-size: 19px;
     &:hover {
-      background-color: yellow;
+      background-color: $primaryLinkColor;
       border: 2px solid #2c2c2c;
 
       color:#2c2c2c;
@@ -259,7 +242,7 @@ text-align: center;
 }
 
 .error {
-  color: red;
+  color: $darkRed;
   padding:20px;
   display: block;
 }
@@ -267,10 +250,6 @@ text-align: center;
 .cPower {
   display: none;
 }
-
-
-
-
 
 // Import sections
 
