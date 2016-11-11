@@ -160,8 +160,8 @@ $(function () {
   gv.main.mainP2 = $('#hud2 main');
 
   gv.main.mainP1.on('submit', 'form', handleForm);
-  gv.main.mainP1.on('click', '.delete', deleteUser);
-  gv.main.mainP1.on('click', '.edit', getUser);
+  gv.main.mainP1.parent().on('click', '.delete', deleteUser);
+  gv.main.mainP1.parent().on('click', '.edit', getUser);
 
   $('html').on('click', '.startGame', startGame);
 
@@ -216,7 +216,7 @@ $(function () {
         }
         $avatars.append('\n          <div class="avatar ' + selected + '" data-id="' + obj.id + '">\n            <img src="' + (obj.thumbnail.path + '.' + obj.thumbnail.extension) + '" alt="profile image">\n              <div class="overlay">\n                <h4>' + obj.name + '</h4>\n              </div>\n          </div>\n        ');
       }).fail(function (jqXHR) {
-        gv.main.mainP1.html('You are a failure.');
+        gv.main.mainP1.html('You are a failure.' + jqXHR);
       });
     }
     $avatars.append($hiddenField);
@@ -267,8 +267,8 @@ $(function () {
       gv.players.player1.avatar = obj.thumbnail.path + '.' + obj.thumbnail.extension;
       gv.players.player1.handle = user;
       gv.main.mainP1.html('\n        <div class="profileHolder">\n          <div class="profileImage">\n            <img src="' + gv.players.player1.avatar + '" >\n          </div>\n          <h3>' + user + '</h3>\n          <p>' + obj.description + '</p>\n        </div>\n      ');
-
-      gv.main.mainP1.find('footer').append('\n        <a class="nav-link edit" data-id="' + userID + '">Edit</a>\n        <a class="nav-link delete" data-id="' + userID + '">Delete</a>\n      ');
+      console.log(gv.main.mainP1.find('footer'));
+      gv.main.mainP1.parent().find('footer').html('\n        <a class="nav-link edit" data-id="' + userID + '">Edit</a>\n        <a class="nav-link delete" data-id="' + userID + '">Delete</a>\n      ');
 
       var characters = ['apocalypse', 'Doctor Doom', 'doctor octopus', 'loki', 'magneto', 'Winter Soldier', 'thanos', 'ultron'];
       var rndNum = Math.floor(Math.random() * characters.length);
